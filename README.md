@@ -31,7 +31,7 @@ In summary, the [BOLIBver2_converted](src/BOLIBver2_converted/) folder contains 
 If you would like to convert the problems for yourself or modify the conversion process, please obtain and extract the contents of ```BOLIBver2``` folder from [BOLIBver2.zip (download link)](https://biopt.github.io/files/BOLIBver2.zip) into the ```BOLIBver2/``` folder, then edit or run [convert_examples_to_julia.m](src/convert_examples_to_julia.m).
 
 # Usage
-Please see [usage_example.jl](usage_example.jl) for a demonstration on how to use the examples:
+Please see [usage_example.jl](examples/usage_example.jl) for a demonstration on how to use the examples:
 ```julia
 include("examples/usage_example.jl")
 ```
