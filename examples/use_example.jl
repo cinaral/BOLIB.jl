@@ -1,15 +1,9 @@
 using BOLIB
 
-include("list_of_examples.jl")
-@assert length(examples) == 165
+@assert length(BOLIB.examples) == 165
 
-# Include examples that you need:
-include.("../" .* filter(contains(r".jl$"), readdir("examples/linear"; join=true)))
-include.("../" .* filter(contains(r".jl$"), readdir("examples/nonlinear"; join=true)))
-include.("../" .* filter(contains(r".jl$"), readdir("examples/simple"; join=true)))
-
-n₁, n₂, F, G, f, g, xy_init, Ff_optimal = AiyoshiShimizu1984Ex2() # replace this with any available example
-funs, syms = generate_derivatives(n₁, n₂, F, G, f, g)
+n₁, n₂, F, G, f, g, xy_init, Ff_optimal = BOLIB.AiyoshiShimizu1984Ex2() # replace this with any available example
+funs, syms = BOLIB.generate_derivatives(n₁, n₂, F, G, f, g)
 
 x = xy_init # x = [x₁; x₂] (instead of x and y)
 F(x)

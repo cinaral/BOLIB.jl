@@ -31,15 +31,18 @@ In summary, the [examples](examples/) folder contains 165 bilevel optimization e
 If you would like to convert the problems for yourself or modify the conversion process, please obtain and extract the contents of ```BOLIBver2``` folder from [BOLIBver2.zip (download link)](https://biopt.github.io/files/BOLIBver2.zip) into the ```BOLIBver2/``` folder, then edit or run [convert_examples_to_julia.m](src/convert_examples_to_julia.m).
 
 # Usage
-Please see [use_example.jl](use_example.jl) on how to use the examples:
+Please see [use_example.jl](use_example.jl) for a demonstration on how to use the examples:
+```julia
+include("examples/use_example.jl")
+```
 
 Include the problem file and call the function which has the identical name to the problem name:
 ```julia
-n₁, n₂, F, G, f, g, xy_init, Ff_optimal = AiyoshiShimizu1984Ex2()
+n₁, n₂, F, G, f, g, xy_init, Ff_optimal = BOLIB.AiyoshiShimizu1984Ex2()
 ```
 Get the derivatives:
 ```julia
-funs, _ = generate_derivatives(n₁, n₂, F, G, f, g)
+funs, _ = BOLIB.generate_derivatives(n₁, n₂, F, G, f, g)
 
 julia> funs.∇ₓ[TAB]
 ∇ₓF!        ∇ₓG_cols    ∇ₓG_rows    ∇ₓG_vals!
@@ -48,9 +51,11 @@ julia> funs.∇ₓ[TAB]
 ∇ₓ²G_rows   ∇ₓ²G_vals!  ∇ₓ²f_cols   ∇ₓ²f_rows
 ∇ₓ²f_vals!  ∇ₓ²g_cols   ∇ₓ²g_rows   ∇ₓ²g_vals!
 ```
-Now you are ready to solve the example! Remember that all functions are in-place and all matrices are represented as sparse matrices, for example:
+Remember that all functions are in-place and all matrices are represented as sparse matrices, for example:
 ```julia
 ∇ₓG_vals = zeros(length(funs.∇ₓG_rows))
 funs.∇ₓG_vals!(∇ₓG_vals, x)
 ∇ₓG = sparse(funs.∇ₓG_rows, funs.∇ₓG_cols, ∇ₓG_vals)
 ```
+
+Now we are ready to solve this problem!
