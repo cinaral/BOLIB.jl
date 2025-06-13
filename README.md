@@ -36,7 +36,7 @@ Please see [use_example.jl](use_example.jl) for a demonstration on how to use th
 include("examples/use_example.jl")
 ```
 
-Include the problem file and call the function which has the identical name to the problem name:
+The function that defines the problem has the identical name to the problem name:
 ```julia
 n₁, n₂, F, G, f, g, xy_init, Ff_optimal = BOLIB.AiyoshiShimizu1984Ex2()
 ```
