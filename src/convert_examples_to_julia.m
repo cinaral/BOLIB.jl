@@ -1,3 +1,4 @@
+% cd(./src)
 addpath(genpath("../BOLIBver2/Examples"))
 addpath(genpath("../BOLIBver2/Examples/Linear"))
 addpath(genpath("../BOLIBver2/Examples/Nonlinear"))
@@ -5,7 +6,7 @@ addpath(genpath("../BOLIBver2/Examples/Simple"))
 
 num_problems = 173; % max 173 from InfomAllExamp.m
 
-list_fileID = fopen(strcat("../examples/list_of_examples.jl"),'w');
+list_fileID = fopen(strcat("./BOLIBver2_converted/list_of_examples.jl"),'w');
 fprintf(list_fileID, strcat("examples = [\n"));
 
 for i = 1:num_problems
@@ -33,11 +34,11 @@ for i = 1:num_problems
 
 	% from InfomAllExamp.m
 	if i < 139
-		prob_fileID = fopen(strcat("../examples/nonlinear/", probname,'.jl'),'w');
+		prob_fileID = fopen(strcat("./BOLIBver2_converted/nonlinear/", probname,'.jl'),'w');
 	elseif i >= 139 && i < 163
-		prob_fileID = fopen(strcat("../examples/linear/", probname,'.jl'),'w');
+		prob_fileID = fopen(strcat("./BOLIBver2_converted/linear/", probname,'.jl'),'w');
 	else
-		prob_fileID = fopen(strcat("../examples/simple/", probname,'.jl'),'w');
+		prob_fileID = fopen(strcat("./BOLIBver2_converted/simple/", probname,'.jl'),'w');
 	end
 
 

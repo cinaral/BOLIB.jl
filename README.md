@@ -5,7 +5,7 @@ This repository converts the example problems from [Bilevel optimization library
 We used a [simple MATLAB script](src/convert_examples_to_julia.m) to convert the examples. Like the MATLAB version, all problems have identical structure. 
 
 However, this version has a few notable differences from the MATLAB version of the BOLIBver2: 
-1. ```InfomAllExamp.m``` was replaced with a single file [list_of_examples.jl](examples/list_of_examples.jl) that returns an array of problem names.
+1. ```InfomAllExamp.m``` was replaced with a single file [list_of_examples.jl](src/BOLIBver2_converted/list_of_examples.jl) that returns an array of problem names.
 2. ```xy_init``` and ```Ff_optimal``` values are recorded inside the corresponding example instead of ```InfomAllExamp.m```.
 3. Derivatives can be obtained by generating them symbolically using the provided [generate_derivatives](src/generate_derivatives.jl) function.
 4. Sparse matrices are used to represent the derivatives.
@@ -22,18 +22,18 @@ However, this version has a few notable differences from the MATLAB version of t
 		1. OptimalControl
 		2. ShehuEtal2019Ex42
 
-In summary, the [examples](examples/) folder contains 165 bilevel optimization examples (BOLIBv2 has 173):
-1. [linear](examples/linear/) : julia files of 24 linear bilevel optimization examples (BOLIBv2 has 24) 
-2. [nonlinear](examples/nonlinear/) : julia files of 131 nonlinear bilevel optimization examples (BOLIBv2 has 138) 
-3. [simple](examples/simple) : julia files of 10 simple bilevel optimization examples (BOLIBv2 has 11) 
-4. [list_of_examples.jl](examples/list_of_examples.jl) : the names of all converted problems
+In summary, the [BOLIBver2_converted](src/BOLIBver2_converted/) folder contains 165 bilevel optimization examples (BOLIBv2 has 173):
+1. [linear](src/BOLIBver2_converted/linear/) : julia files of 24 linear bilevel optimization examples (BOLIBv2 has 24) 
+2. [nonlinear](src/BOLIBver2_converted/nonlinear/) : julia files of 131 nonlinear bilevel optimization examples (BOLIBv2 has 138) 
+3. [simple](src/BOLIBver2_converted/simple) : julia files of 10 simple bilevel optimization examples (BOLIBv2 has 11) 
+4. [list_of_examples.jl](src/BOLIBver2_converted/list_of_examples.jl) : the names of all converted problems
 
 If you would like to convert the problems for yourself or modify the conversion process, please obtain and extract the contents of ```BOLIBver2``` folder from [BOLIBver2.zip (download link)](https://biopt.github.io/files/BOLIBver2.zip) into the ```BOLIBver2/``` folder, then edit or run [convert_examples_to_julia.m](src/convert_examples_to_julia.m).
 
 # Usage
-Please see [use_example.jl](use_example.jl) for a demonstration on how to use the examples:
+Please see [usage_example.jl](usage_example.jl) for a demonstration on how to use the examples:
 ```julia
-include("examples/use_example.jl")
+include("examples/usage_example.jl")
 ```
 
 The function that defines the problem has the identical name to the problem name:
