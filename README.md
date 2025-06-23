@@ -53,9 +53,9 @@ julia> funs.∇ₓ[TAB]
 ```
 Remember that all functions are in-place and all matrices are represented as sparse matrices, for example:
 ```julia
-∇ₓG_vals = zeros(length(funs.∇ₓG_rows))
-funs.∇ₓG_vals!(∇ₓG_vals, x)
-∇ₓG = sparse(funs.∇ₓG_rows, funs.∇ₓG_cols, ∇ₓG_vals)
+∇ₓG_shape = size(syms.∇ₓG)
+∇ₓG = BOLIB.sparse(funs.∇ₓG_rows, funs.∇ₓG_cols, zeros(length(funs.∇ₓG_rows)), ∇ₓG_shape[1], ∇ₓG_shape[2])
+funs.∇ₓG_vals!(∇ₓG.nzval, x)
 ```
 
 Now we are ready to solve this problem!

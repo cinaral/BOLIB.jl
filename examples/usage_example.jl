@@ -17,7 +17,7 @@ funs.∇ₓF!(∇ₓF, x)
 display(∇ₓF)
 
 # Matrix derivatives are represented as sparse matrices:
-∇ₓG_vals = zeros(length(funs.∇ₓG_rows))
-funs.∇ₓG_vals!(∇ₓG_vals, x)
-∇ₓG = BOLIB.sparse(funs.∇ₓG_rows, funs.∇ₓG_cols, ∇ₓG_vals)
+∇ₓG_shape = size(syms.∇ₓG)
+∇ₓG = BOLIB.sparse(funs.∇ₓG_rows, funs.∇ₓG_cols, zeros(length(funs.∇ₓG_rows)), ∇ₓG_shape[1], ∇ₓG_shape[2])
+funs.∇ₓG_vals!(∇ₓG.nzval, x)
 display(∇ₓG)
