@@ -11,10 +11,10 @@ However, this version has a few notable differences from the MATLAB version of t
 4. Sparse matrices are used to represent the derivatives.
 5. Only continuous problems have been converted for now, the following problems are currently **not available** in this version:
 	- Piecewise problems: 
-		1. GumusFloudas2001Ex5
-		2. LuDebSinha2016a
-		3. LuDebSinha2016b
-		4. LuDebSinha2016c
+		1. LuDebSinha2016a
+		2. LuDebSinha2016b
+		3. LuDebSinha2016c
+		4. GumusFloudas2001Ex5 (the problem is not piecewise, but the converted version is broken)
 	- Problems with logical flow: 
 		1. MorganPatrone2006b
 		2. MorganPatrone2006c

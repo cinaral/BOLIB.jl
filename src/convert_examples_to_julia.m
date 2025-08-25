@@ -12,7 +12,7 @@ fprintf(list_fileID, strcat("examples = [\n"));
 for i = 1:num_problems
 	% 2025-05-16
 	% CalamaiVicente1994b has a bug where xy_init is 7 long...
-	% 36, 49, 50, 51 are piecewise
+	% 49, 50, 51 are piecewise (36 isn't piecewise but generates piecewise for some reason)
 	% 79-80 has if else statements
 	% 138 requires partial differential equation toolbox
 	% 173 has weird probname
