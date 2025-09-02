@@ -27,7 +27,7 @@ function RobustPortfolioP1()
 	end
 
 	xy_init = Float64[1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1;1]
-	Ff_optimal = Float64[1.15;0;2]
+	Ff_optimal = Float64[-1.15;0;2]
 
 	(; n1, n2, F, G, f, g, xy_init, Ff_optimal)
 end 
