@@ -10,6 +10,7 @@ list_fileID = fopen(strcat("./BOLIBver2_converted/list_of_examples.jl"),'w');
 fprintf(list_fileID, strcat("examples = [\n"));
 
 for i = 1:num_problems
+	%for i = 131:132
 	% 2025-05-16
 	% CalamaiVicente1994b has a bug where xy_init is 7 long...
 	% 49, 50, 51 are piecewise (36 isn't piecewise but generates piecewise for some reason)
@@ -19,19 +20,27 @@ for i = 1:num_problems
 	if i == 36 || i == 49 || i == 50 || i == 51 || i == 79 || i == 80 || i == 138 || i == 173
 		continue
 	end
-
+	
 	fprintf('converting %d\n',i)
 	[probname, dim, xy, Ff] = InfomAllExamp(i);
 	x = sym("x", [dim(1) 1], "real");
 	y = sym("y", [dim(2) 1], "real");
 	fun = str2func(probname);
-	F = fun(x, y, "F");
-	G = fun(x, y, "G");
-	f = fun(x, y, "f");
-	g = fun(x, y, "g");
-
+	
+	if i == 131 || i == 132
+		F = simplify(fun(x, y, "F"));
+		G = simplify(fun(x, y, "G"));
+		f = simplify(fun(x, y, "f"));
+		g = simplify(fun(x, y, "g"));
+	else
+		F = fun(x, y, "F");
+		G = fun(x, y, "G");
+		f = fun(x, y, "f");
+		g = fun(x, y, "g");
+	end
+	
 	fprintf(list_fileID, strcat("\t""", probname, """\n"));
-
+	
 	% from InfomAllExamp.m
 	if i < 139
 		prob_fileID = fopen(strcat("./BOLIBver2_converted/nonlinear/", probname,'.jl'),'w');
@@ -40,25 +49,25 @@ for i = 1:num_problems
 	else
 		prob_fileID = fopen(strcat("./BOLIBver2_converted/simple/", probname,'.jl'),'w');
 	end
-
-
+	
+	
 	fprintf(prob_fileID, strcat("function ", probname, "()\n"));
 	fprintf(prob_fileID, strcat("\tn1::Int64 = ", string(dim(1))));
 	fprintf(prob_fileID, "\n");
 	fprintf(prob_fileID, strcat("\tn2::Int64 = ", string(dim(2))));
 	fprintf(prob_fileID, "\n\n");
-
+	
 	print_body(prob_fileID, "F", F, dim(1), dim(2))
 	print_body(prob_fileID, "G", -G, dim(1), dim(2), true)
 	print_body(prob_fileID, "f", f, dim(1), dim(2))
 	print_body(prob_fileID, "g", -g, dim(1), dim(2), true)
-
+	
 	fprintf(prob_fileID, strcat("\txy_init = Float64", string(mat2str(xy)), "\n"));
 	fprintf(prob_fileID, strcat("\tFf_optimal = Float64", string(mat2str(Ff')), "\n\n"));
-
+	
 	fprintf(prob_fileID, strcat("\t(; n1, n2, F, G, f, g, xy_init, Ff_optimal)\n"));
 	fprintf(prob_fileID, strcat("end ", "\n\n"));
-
+	
 	fclose(prob_fileID);
 end
 
